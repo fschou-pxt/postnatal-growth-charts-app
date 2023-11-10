@@ -164,9 +164,6 @@ shinyServer(function(session, input, output) {
     updateTextInput(session, "enterTP", value = rv$percentile_min)
     #rv$Chou_weight$percentile <- rv$Chou_weight$Predicted_expected + qnorm(rv$percentile_min/100) * rv$Chou_weight$sigma
     disable("calculate")
-    load("weight_log.RData")
-    weight_log[[as.character(lubridate::now())]] <- rv$proxy
-    save(weight_log, file = "weight_log.RData")
   })
   
   observeEvent(input$enterTP, {

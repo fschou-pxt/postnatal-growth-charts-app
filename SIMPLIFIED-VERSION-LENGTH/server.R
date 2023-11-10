@@ -163,9 +163,6 @@ shinyServer(function(input, output) {
         })
         rv$Chou_length$percentile <- rv$Chou_length$Predicted_expected + qnorm(rv$percentile_min/100) * rv$Chou_length$sigma
         disable("calculate")
-        load("length_log.RData")
-        length_log[[as.character(lubridate::now())]] <- rv$proxy
-        save(length_log, file = "length_log.RData")
     })
     
 

@@ -14,12 +14,7 @@ shinyServer(function(input, output, session) {
   
   type <<- NA
   
-  color_palette <- read_csv("../GTC-Website-Registration/www/color_palette.csv") %>% t(.) %>% as.data.frame() %>% rownames_to_column(var = "color_order")
-  #color_df <- data.frame(Theme = character(0))
-
-  #for (i in c(1:(ncol(color_palette)-1))) {
-  #  color_df[i,"Theme"] <- paste0("<span style='font-size:14px;'>Option ",i,"&nbsp;&nbsp;&nbsp", paste0("<span><i class='fa-solid fa-square' style=color:", color_palette[[paste0("V",i)]], ";></i></span>", collapse = ""),"</span>")
-  #}
+  color_palette <- read_csv("../REGISTRATION/www/color_palette.csv") %>% t(.) %>% as.data.frame() %>% rownames_to_column(var = "color_order")
   
   runjs('document.getElementById("main_frame").scrollIntoView({block:"start", behavior:"smooth"})')  
   
@@ -41,7 +36,7 @@ shinyServer(function(input, output, session) {
                        lastThree = NA,
                        assessing_weight = 0,
                        signed_in = 0,
-                       color_palette = read_csv("../GTC-Website-Registration/www/color_palette.csv") %>% t(.) %>% as.data.frame() %>% rownames_to_column(var = "color_order"),
+                       color_palette = read_csv("../REGISTRATION/www/color_palette.csv") %>% t(.) %>% as.data.frame() %>% rownames_to_column(var = "color_order"),
                        color_df = data.frame(Theme = character(0))
                        
   )
@@ -51,21 +46,6 @@ shinyServer(function(input, output, session) {
     }
   })
 
-  output$google_sites <- renderUI({
-    box(id = "announcement_box",
-        title = span("❉ANNOUNCEMENT❉", class = "box-header-title", style="color:red;"),
-        collapsible = FALSE,
-        closable = FALSE,
-        width = 11,
-        fluidRow(
-          column(12, h4("Useful Links:", style="margin-left:30px;")),
-          column(12, a(href="https://sites.google.com/nicugrowth.app/nicugrowth-app/home", target="_blank", actionButton("google_sites", "nicugrowth.app PORTAL page", class="gtc-button", style="margin:0 10px 10px 30px"))),
-          column(12, a(href="https://sites.google.com/nicugrowth.app/nicugrowth-app/media", target="_blank", actionButton("google_sites_tutorial", "nicugrowth.app TUTORIAL page", class="gtc-button", style="margin:0 10px 10px 30px;"))),
-          column(12, a(href="2023_AAP_NCE_PRESENTATION.pptx", target="_blank", actionButton("aapnce2023slides", "2023 AAP NCE PRESENTATION SLIDES", class="gtc-button", style="margin:0 10px 10px 30px;")))        )
-        )
-    
-  })
-  
   plots <- reactiveValues(
     weight_plot = ggplot(),
     length_plot = ggplot(),
@@ -347,7 +327,7 @@ shinyServer(function(input, output, session) {
     rv$color_palette[[paste0("V", row)]] <- newTheme
     tbl <- rv$color_palette %>% column_to_rownames(var = "color_order") %>% t(.) %>% as.data.frame(.)
     rownames(tbl) <- NULL
-    write_csv(tbl, "../GTC-Website-Registration/www/color_palette.csv")
+    write_csv(tbl, "../REGISTRATION/www/color_palette.csv")
     
     for (i in c(1:(row))) {
       rv$color_df[i,"Theme"] <- paste0("<span style='font-size:14px;'>Option ",i,"&nbsp;&nbsp;&nbsp", paste0("<span><i class='fa-solid fa-square' style=color:", rv$color_palette[[paste0("V",i)]], ";></i></span>", collapse = ""),"</span>")

@@ -163,9 +163,6 @@ shinyServer(function(input, output) {
         })
         rv$Chou_HC$percentile <- rv$Chou_HC$Predicted_expected + qnorm(rv$percentile_min/100) * rv$Chou_HC$sigma
         disable("calculate")
-        load("HC_log.RData")
-        HC_log[[as.character(lubridate::now())]] <- rv$proxy
-        save(HC_log, file = "HC_log.RData")
     })
     
 

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@900&display=swap');
+
+.content-wrapper, .right-side {background-color: #F0F0F0;}
+.greetings {font-size:24px;font-weight:700;color:#F1C232;}
+.skin-blue .main-sidebar {background-color: #546E7A;}
+.progress-bar {background-color: #546E7A;}
+.line {height:3px;background-color:#445760;}
+.meas-box {color:#546E7A;}
+.meas-info-box {background-color:#f0f0f0;height:475px;border-radius:5px;margin-right:5px;box-shadow:3px 3px 1px #aaaaaa;}
+.enlarge-button {padding:6px;font-size:14px;background-color:#cccccc;color:#546E7A;border:0;}
+.gtc-button {padding:3px 6px 3px 6px;font-size:14px;background-color:#cccccc;color:#546E7A;border:0;}
+.gtc-button:hover {background-color:#546E7A;color:#FFFFFF;}
+.gtc-button-rev {padding:3px 6px 3px 6px;font-size:14px;background-color:#546E7A;color:#FFFFFF;border:0;}
+.box-header-title {padding:0;border:0;font-size:18px;font-weight:700;color:#546E7A;font-family:Nunito;}
+.settings-box {margin:30px;}
+.shiny-progress .progress-text {background-color: #546E7A;}
+.msg-box {box:#F0F0F0;font-weight:400;font-size:14px;padding:0;margin:0;}
+
+

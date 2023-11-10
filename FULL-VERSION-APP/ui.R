@@ -151,7 +151,6 @@ shinyUI(
                               ),
                               div(class="col-lg-9 col-md-8 col-sm-7 demo-wrap", style="height:480px;",
                                   fluidRow(class="demo-content",
-                                           uiOutput("google_sites"),
                                       div(id = "meas_table_view", DTOutput("meas_table"), style = "height:440px;padding-right:12px;padding-left:12px;font-size:11px;"),
                                       div(align="right", style="padding:8px 15px 0 0;",
                                                  hidden(actionButton("delete_record", icon = tags$i(class="fa-solid fa-trash-can"), "DELETE", class = "gtc-button")),

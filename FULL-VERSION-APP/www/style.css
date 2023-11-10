@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@900&display=swap');
+
+.content-wrapper, .right-side {background-color: #F0F0F0;}
+.greetings {font-size:24px;font-weight:700;color:#CC0000;}
+.skin-blue .main-sidebar {background-color: #546E7A;}
+.line {height:3px;background-color:#445760;}
+.meas-box {color:#546E7A;}
+.col-sm-12 {padding:0px !important;margin:0 !important;}
+.meas-info-box {background-color:#f0f0f0;height:475px;border-radius:5px;margin-right:5px;box-shadow:3px 3px 1px #aaaaaa;}
+.gtc-button {padding:3px 6px 3px 6px;font-size:14px;background-color:#cccccc;color:#546E7A;border:0;margin-bottom:5px;margin-top:5px;}
+.gtc-button-2 {padding:3px 6px 3px 6px;font-size:14px;background-color:#ffffff;color:#546E7A;border:1px solid ##CC0000;margin-bottom:5px;margin-top:5px;}
+.large-padding {padding:7px 10px 7px 10px;}
+.gtc-button:hover {background-color:#546E7A;color:#FFFFFF;}
+.gtc-button-rev {padding:3px 6px 3px 6px;font-size:14px;background-color:#546E7A;color:#FFFFFF;border:0;}
+.box-header-title {padding:0;border:0;font-size:18px;font-weight:700;color:#546E7A;font-family:Nunito;}
+.box-header-title > .white-font {color:white;}
+.settings-box {margin:30px;}
+.msg-box {box:#F0F0F0;font-weight:400;font-size:14px;}
+.instructionButton {
+  border:1px solid red;
+  border-radius: 2px;
+  color:red;
+  padding:1px;
+}
+.instructionNonButton {
+  color:black;
+  font-weight:700;
+  padding:1px;
+}
+div.checkbox {margin:0 !important;}
+div.form-group.shiny-input-container {margin-bottom:3px !important;}
+
+.demo-wrap {
+  position: relative;
+}
+
+.demo-wrap:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  right: 13px;
+  bottom: 43px;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  background-image: url('background-image.png');
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+}
+
+.demo-content {
+  position: relative;
+}
