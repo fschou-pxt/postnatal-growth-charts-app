@@ -20,7 +20,7 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   observeEvent(input$submit, {
-    id <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/user.csv")$id
+    id <- read_csv("../REGISTRATION/www/user.csv")$id
     
     if (input$new_password == input$retype_new_password) {
       output$message <- renderUI({})
@@ -34,7 +34,7 @@ server <- function(input, output) {
         })
       } else if (decrypt_string(input$code, "nicugrowth.app") %in% id) {
         write_csv(data.frame(pwd = encrypt_string(input$new_password, decrypt_string(input$code, "nicugrowth.app"))),
-                  "~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/pwd.csv", append = TRUE)
+                  "../REGISTRATION/www/pwd.csv", append = TRUE)
         output$message <- renderUI({
           div(style="color:red;", span("Password reset!", br(), "Close the window and return to the", 
                                        a("Sign-In", href = "https://sites.google.com/nicugrowth.app/nicugrowth-app-full/webapp?authuser=0", style="color:red;font-weight:600;"), "page."))

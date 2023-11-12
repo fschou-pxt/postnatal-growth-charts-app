@@ -24,7 +24,7 @@ shinyServer(function(input, output, session) {
   color_palette <- 
     tribble( 
       ~color1,   ~color2,   ~color3,   ~color4,   ~color5,   ~color6,   ~color7,   ~color8,   ~color9,
-      "#F1C232", "#445760", "#546E7A", "#7895A2", "#AAAAAA", "#DDDDDD", "#F0F0F0", "#FFFFFF", "#CC0000",
+      "#F1C232", "#445760", "#546E7A", "#7895A2", "#AAAAAA", "#DDDDDD", "#F0F0F0", "#FFFFFF", "#A34100",
       "#59D3C4", "#002774", "#002774", "#003baf", "#397cff", "#74a3ff", "#c2d7ff", "#FFFFFF", "#FF0BA8", 
       "#ff1b6b", "#61a2e2", "#3e196e", "#99a5d3", "#b4a6cb", "#d0a8c3", "#eca9bb", "#FFFFFF", "#6f7bf7",
       "#000814", "#ba2a4e", "#a5345f", "#903f6f", "#7a497f", "#e8b7e2", "#91a5c3", "#FFFFFF", "#f55a9b",
@@ -116,7 +116,7 @@ shinyServer(function(input, output, session) {
   }
   
   refresh_saved_infant <- function() {
-    con <- dbConnect(duckdb::duckdb(), dbdir="~/Apps/GTC-Website-Apps/GTC-DB/db.duckdb", read_only=TRUE)
+    con <- dbConnect(duckdb::duckdb(), dbdir="../DATABASE/db.duckdb", read_only=TRUE)
     saved_infant_id <- dbGetQuery(con, paste0("SELECT ID FROM \"demographics_fullApp\" WHERE USERID = '", input$id, "'"))
     saved_infant_id <- saved_infant_id$ID
     dbDisconnect(con, shutdown = TRUE)
@@ -140,7 +140,7 @@ shinyServer(function(input, output, session) {
     runjs(paste0("$('.progress-bar').css('background-color','", colors$color6, "')"))
     runjs(paste0("$('.shiny-progress .progress-text').css('background-color','", colors$color6, "').css('opacity','1')"))
     runjs(paste0("$('.content-wrapper').css('background-color','", colors$color7, "')"))
-    runjs(paste0("$('.greetings').css('color','", colors$color1, "')"))
+    runjs(paste0("$('.greetings').css('color','", colors$color9, "')"))
     runjs(paste0("$('#id_select_div').css('background-color','", colors$color3, "')"))
     runjs(paste0("$('#GA_sex_select_div').css('background-color','", colors$color4, "')"))
     runjs(paste0("$('.line').css('background-color','", colors$color3, "')"))
@@ -218,7 +218,7 @@ shinyServer(function(input, output, session) {
       }
     }
     
-    id <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/user.csv")
+    id <- read_csv("../REGISTRATION/www/user.csv")
     selected_color_theme <- id$color_theme[id$id %in% input$id]
     font                 <- id$font[id$id %in% input$id]
     
@@ -250,8 +250,8 @@ shinyServer(function(input, output, session) {
   })
   
   observeEvent(input$signin, {
-    id <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/user.csv")
-    pwd <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/pwd.csv")
+    id <- read_csv("../REGISTRATION/www/user.csv")
+    pwd <- read_csv("../REGISTRATION/www/pwd.csv")
     
     if (!(input$id %in% id$id)) {
       output$signin_msg <- renderUI({
@@ -270,7 +270,7 @@ shinyServer(function(input, output, session) {
         output$signin_msg <- renderUI({})
         
         #display name
-        name <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/registration.csv") %>% 
+        name <- read_csv("../REGISTRATION/www/registration.csv") %>% 
           filter(username %in% input$id) %>% 
           select(firstName, lastName)
         full.name <- paste(name$firstName, name$lastName)
@@ -645,14 +645,8 @@ shinyServer(function(input, output, session) {
         
         rv$dtZ <- rv$dtZ %>% left_join(rv$dtTP)
       }
-      
-      
+
       rv$dt <- rv$dtZ
-      
-      ## autosave function for myself
-      if (input$id %in% "fschou1") {
-        write_csv(rv$dt, paste0("dt_Z_TP", now(), ".csv"))
-      }
       
       output$msg <- renderUI({
         span(style="color:red;", "Analysis completed!!!")
@@ -953,10 +947,10 @@ shinyServer(function(input, output, session) {
     rv$font <- input$font_selection
     # save color theme
     selected_color_theme <- gsub("Option ", "", str_extract(input$color_theme_selection, "Option\\s[0-9]+"))
-    id <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/user.csv")
+    id <- read_csv("../REGISTRATION/www/user.csv")
     id[id$id %in% input$id, "color_theme"] <- as.numeric(selected_color_theme)
     id[id$id %in% input$id, "font"] <- input$font_selection
-    write_csv(id, "~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/user.csv")
+    write_csv(id, "../REGISTRATION/www/user.csv")
     
   })
   

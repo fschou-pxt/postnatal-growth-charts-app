@@ -47,7 +47,7 @@ server <- function(input, output) {
   
   observeEvent(input$step2_go, {
     
-    registration <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/registration.csv") %>% filter(gmail %in% input$email)
+    registration <- read_csv("../REGISTRATION/www/registration.csv") %>% filter(gmail %in% input$email)
     username <- registration$username
     output$step2 <- renderUI({
       selectInput("select_username", "Select a username associated with this E-Mail account", choices = c("Select One..." = "", username), width = "100%")
@@ -55,7 +55,7 @@ server <- function(input, output) {
   })
   
   observeEvent(input$select_username, {
-    pwd <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/pwd.csv")$pwd
+    pwd <- read_csv("../REGISTRATION/www/pwd.csv")$pwd
     catch <- c()
     for (i in c(1:length(pwd))) {
       if (class(try(decrypt_string(pwd[i], input$select_username))) != "try-error") {
@@ -118,7 +118,7 @@ server <- function(input, output) {
   })
   
   observeEvent(input$select_pwd, {
-    id <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/user.csv")$id
+    id <- read_csv("../REGISTRATION/www/user.csv")$id
     id <- setdiff(id, input$select_username)
     catch <- c()
     for (i in c(1:length(id))) {
@@ -142,9 +142,9 @@ server <- function(input, output) {
   })
   
   observeEvent(input$delete, {
-    pwd <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/pwd.csv")
+    pwd <- read_csv("../REGISTRATION/www/pwd.csv")
     pwd_alt <- pwd %>% filter(!(pwd %in% rv$passwd_df$pwd))
-    write_csv(pwd_alt, "~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/pwd.csv")
+    write_csv(pwd_alt, "../REGISTRATION/www/pwd.csv")
     code <- encrypt_string(input$select_username, "nicugrowth.app")
     
     output$generate_code <- renderUI({
@@ -159,9 +159,9 @@ server <- function(input, output) {
   })
   
   observeEvent(input$delete1, {
-    pwd <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/pwd.csv")
+    pwd <- read_csv("../REGISTRATION/www/pwd.csv")
     pwd_alt <- pwd %>% filter(!(pwd %in% rv$passwd_df$pwd[rv$passwd_df$id %in% input$select_pwd]))
-    write_csv(pwd_alt, "~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/pwd.csv")
+    write_csv(pwd_alt, "../REGISTRATION/www/pwd.csv")
     code <- encrypt_string(input$select_username, "nicugrowth.app")
     
     output$generate_code <- renderUI({

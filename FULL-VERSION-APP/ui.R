@@ -138,8 +138,8 @@ shinyUI(
                                                            uiOutput("id_selector")
                                                        ),
                                                        div(id = "GA_sex_select_div", style="padding:5px 5px 0 5px;border-radius:5px;background-color:#7895a2;color:#FFFFFF;", 
-                                                           selectInput("GA_week", "GA (week)", choices = c("", c(22:34)), width = "100%"),
-                                                           selectInput("GA_day", "GA (day)", choices = c("", c(0:6)), width = "100%"),
+                                                           selectInput("GA_week", "GA (week)", choices = c("", c(22:34)), width = "100%", selected = ""),
+                                                           selectInput("GA_day", "GA (day)", choices = c("", c(0:6)), width = "100%", selected = ""),
                                                            selectInput("sex", "Sex", choices = c("", "Female", "Male"), width = "100%")
                                                        ),
                                                        hr(),

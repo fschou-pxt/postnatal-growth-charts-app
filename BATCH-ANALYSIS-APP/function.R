@@ -4,7 +4,7 @@ loadGrowthCharts <- function(table, type = c("Weight", "Length", "HeadCircumfere
   
   GAn_Sex <- unique(table %>% select(GAn, Sex))
   GTC_dt <- data.frame()
-  con <- dbConnect(duckdb::duckdb(), dbdir="../GTC-DB/db.duckdb", read_only=TRUE)
+  con <- dbConnect(duckdb::duckdb(), dbdir="../DATABASE/db.duckdb", read_only=TRUE)
   for (i in c(1: nrow(GAn_Sex))) {
     temp <- dbGetQuery(con, paste0("SELECT * FROM GA",GAn_Sex[[i,"GAn"]],"_", GAn_Sex[[i,"Sex"]],"_",type)) %>% 
       mutate(percentile = as.numeric(NA), GAn = GAn_Sex[[i,"GAn"]], Sex = GAn_Sex[[i,"Sex"]])

@@ -50,7 +50,7 @@ shinyServer(function(session, input, output) {
         })
       } else if (input$sex %in% c("Male", "Female")) {
         ### retrieve data
-        con <- dbConnect(duckdb::duckdb(), dbdir="~/Apps/GTC-Website-Apps/GTC-DB/db.duckdb", read_only=TRUE)
+        con <- dbConnect(duckdb::duckdb(), dbdir="../DATABASE/db.duckdb", read_only=TRUE)
         rv$Chou_weight <- dbGetQuery(con, paste0("SELECT * FROM GA",GAn,"_",req(input$sex),"_Weight")) %>% mutate(percentile = as.numeric(NA))
         dbDisconnect(con, shutdown = TRUE)
         

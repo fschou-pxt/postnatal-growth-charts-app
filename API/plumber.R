@@ -25,8 +25,10 @@ growthCharts <- function(GA, SEX, TYPE) {
   colnames(chart) <- colnames
   
   if (as.numeric(GA) >=23 & as.numeric(GA) <=34 & SEX %in% c("Female", "Male")) {
-    growthChartsTable <- readr::read_csv(paste0("Datatable/GA_", GA, "_", SEX, "_", TYPE, ".csv")) %>%
+    con <- dbConnect(duckdb::duckdb(), dbdir="../DATABASE/db.duckdb", read_only=TRUE)
+    growthChartsTable <- dbGetQuery(con, paste0("SELECT * FROM GA",GA,"_",SEX,"_",ifelse(TYPE %in% "HC", "HeadCircumference", TYPE))) %>%
       dplyr::mutate(Day = Daily_DSB + GA * 7) %>% as.data.frame(.)
+    dbDisconnect(con, shutdown = TRUE)
   }
 
 }

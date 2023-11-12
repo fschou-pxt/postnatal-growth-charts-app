@@ -113,7 +113,7 @@ shinyServer(function(input, output, session) {
   }
   
   refresh_saved_infant <- function() {
-    con <- dbConnect(duckdb::duckdb(), dbdir="~/Apps/GTC-Website-Apps/GTC-DB/db.duckdb", read_only=TRUE)
+    con <- dbConnect(duckdb::duckdb(), dbdir="../DATABASE/db.duckdb", read_only=TRUE)
     saved_infant_id <- dbGetQuery(con, paste0("SELECT ID FROM \"demographics_fullApp\" WHERE USERID = '", input$id, "'"))
     saved_infant_id <- saved_infant_id$ID
     if (input$admitted) {
@@ -271,7 +271,7 @@ shinyServer(function(input, output, session) {
             
         ))
       
-      id <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/user.csv")
+      id <- read_csv("../REGISTRATION/www/user.csv")
       selected_color_theme <- id$color_theme[id$id %in% input$id]
       font                 <- id$font[id$id %in% input$id]
       
@@ -359,10 +359,10 @@ shinyServer(function(input, output, session) {
     change_font(input$font_selection)
     rv$font <- input$font_selection
     # save color theme
-    id <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/user.csv")
+    id <- read_csv("../REGISTRATION/www/user.csv")
     id[id$id %in% input$id, "color_theme"] <- selected_color_theme
     id[id$id %in% input$id, "font"] <- input$font_selection
-    write_csv(id, "~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/user.csv")
+    write_csv(id, "../REGISTRATION/www/user.csv")
     
   })
   
@@ -373,8 +373,8 @@ shinyServer(function(input, output, session) {
   observeEvent(input$signin, {
     output$google_sites <- renderUI({})
     
-    id <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/user.csv")
-    pwd <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/pwd.csv")
+    id <- read_csv("../REGISTRATION/www/user.csv")
+    pwd <- read_csv("../REGISTRATION/www/pwd.csv")
     
     if (!(input$id %in% id$id)) {
       output$signin_msg <- renderUI({
@@ -393,7 +393,7 @@ shinyServer(function(input, output, session) {
         output$signin_msg <- renderUI({})
         rv$signed_in <- 1
         #display name
-        name <- read_csv("~/Apps/GTC-Website-Apps/GTC-Website-Registration/www/registration.csv") %>% 
+        name <- read_csv("../REGISTRATION/www/registration.csv") %>% 
           filter(username %in% input$id) %>% 
           select(firstName, lastName)
         full.name <- paste(name$firstName, name$lastName)
@@ -442,7 +442,7 @@ shinyServer(function(input, output, session) {
 
       }
       
-      con <- dbConnect(duckdb::duckdb(), dbdir="~/Apps/GTC-Website-Apps/GTC-DB/db.duckdb", read_only=FALSE)
+      con <- dbConnect(duckdb::duckdb(), dbdir="../DATABASE/db.duckdb", read_only=FALSE)
       temp_demographics <- dbGetQuery(con, paste0("SELECT * FROM \"demographics_fullApp\" WHERE USERID = '", input$id, "'AND ID = '", input$id_dropdown, "';"))
       discharged <- dbGetQuery(con, paste0("SELECT DISCHARGED FROM \"Discharged_tbl\" WHERE USERID = '", input$id, "' AND ID = '", input$id_dropdown, "';"))
       dbDisconnect(con, shutdown = TRUE)
@@ -501,7 +501,7 @@ shinyServer(function(input, output, session) {
   })
   
   observeEvent(input$discharged, {
-    con <- dbConnect(duckdb::duckdb(), dbdir="~/Apps/GTC-Website-Apps/GTC-DB/db.duckdb", read_only=FALSE)
+    con <- dbConnect(duckdb::duckdb(), dbdir="../DATABASE/db.duckdb", read_only=FALSE)
     dbExecute(con, paste0("UPDATE Discharged_tbl SET DISCHARGED = ", ifelse(input$discharged, 1, 0), "WHERE ID = '", input$id_dropdown, "' AND USERID = '", input$id, "';"))
     dbDisconnect(con, shutdown = TRUE)
   })
@@ -510,7 +510,7 @@ shinyServer(function(input, output, session) {
     saved_infant_id <- refresh_saved_infant()
     
     if (input$id_dropdown %in% saved_infant_id) {
-      con <- dbConnect(duckdb::duckdb(), dbdir="~/Apps/GTC-Website-Apps/GTC-DB/db.duckdb", read_only=FALSE)
+      con <- dbConnect(duckdb::duckdb(), dbdir="../DATABASE/db.duckdb", read_only=FALSE)
       dbExecute(con, paste0("DELETE FROM \"meas_table_fullApp\" WHERE USERID = '", input$id, "'AND ID = '", input$id_dropdown, "';"))
       dbAppendTable(con, "meas_table_fullApp", rv$proxy %>% 
                       mutate(USERID = input$id, ID = input$id_dropdown) %>% 
@@ -550,7 +550,7 @@ shinyServer(function(input, output, session) {
   
   observeEvent(input$confirm_delete, {
     removeModal()
-    con <- dbConnect(duckdb::duckdb(), dbdir="~/Apps/GTC-Website-Apps/GTC-DB/db.duckdb", read_only=FALSE)
+    con <- dbConnect(duckdb::duckdb(), dbdir="../DATABASE/db.duckdb", read_only=FALSE)
     dbExecute(con, paste0("DELETE FROM \"demographics_fullApp\" WHERE USERID = '", input$id, "'AND ID = '", input$id_dropdown, "';"))
     dbExecute(con, paste0("DELETE FROM \"meas_table_fullApp\" WHERE USERID = '", input$id, "'AND ID = '", input$id_dropdown, "';"))
     dbDisconnect(con, shutdown = TRUE)
@@ -604,7 +604,7 @@ shinyServer(function(input, output, session) {
           
 
         ### retrieve data
-        con <- dbConnect(duckdb::duckdb(), dbdir="~/Apps/GTC-Website-Apps/GTC-DB/db.duckdb", read_only=TRUE)
+        con <- dbConnect(duckdb::duckdb(), dbdir="../DATABASE/db.duckdb", read_only=TRUE)
         rv$Chou_weight <- dbGetQuery(con, paste0("SELECT * FROM GA",GAn,"_",req(input$sex),"_Weight")) %>% mutate(percentile = as.numeric(NA))
         rv$Chou_length <- dbGetQuery(con, paste0("SELECT * FROM GA",GAn,"_",req(input$sex),"_Length")) %>% mutate(percentile = as.numeric(NA))
         rv$Chou_HC     <- dbGetQuery(con, paste0("SELECT * FROM GA",GAn,"_",req(input$sex),"_HeadCircumference")) %>% mutate(percentile = as.numeric(NA))
@@ -617,7 +617,7 @@ shinyServer(function(input, output, session) {
         
         saved_infant_id <- refresh_saved_infant()
         if (input$id_dropdown %in% saved_infant_id) {
-          con <- dbConnect(duckdb::duckdb(), dbdir="~/Apps/GTC-Website-Apps/GTC-DB/db.duckdb", read_only=TRUE)
+          con <- dbConnect(duckdb::duckdb(), dbdir="../DATABASE/db.duckdb", read_only=TRUE)
           rv$dt   <- dbGetQuery(con, paste0("SELECT * FROM \"meas_table_fullApp\" WHERE USERID = '", input$id, "'AND ID = '", input$id_dropdown, "';")) %>% 
             select(-USERID, -ID) %>% 
             mutate(DOL = as.numeric(DOL),
@@ -659,7 +659,7 @@ shinyServer(function(input, output, session) {
             DISCHARGED = 0
           )
           rv$proxy <- rv$dt
-          con <- dbConnect(duckdb::duckdb(), dbdir="~/Apps/GTC-Website-Apps/GTC-DB/db.duckdb", read_only=FALSE)
+          con <- dbConnect(duckdb::duckdb(), dbdir="../DATABASE/db.duckdb", read_only=FALSE)
           dbAppendTable(con, "demographics_fullApp", demographic_temp)
           dbAppendTable(con, "meas_table_fullApp", rv$proxy %>% 
                           mutate(USERID = input$id, ID = input$id_dropdown) %>% 
